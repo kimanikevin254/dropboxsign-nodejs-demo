@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body class="font-sans text-gray-300 antialiased bg-gray-900">
+    <header>
+        <%- include('../../partials/header'); %>
+    </header>
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-8">
+        <div class="bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="container mx-auto">
+                <div class="my-4 p-4 flex justify-between items-center">
+                    <h1 class="text-yellow-400 text-2xl font-bold">Signature Requests</h1>
+                    <a href="/signature-requests/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Signature Request</a>
+                </div>
+
+                <div class="bg-gray-200 rounded-lg p-4">
+                    <table class="w-full text-sm text-left rtl:text-right">
+                        <thead class="bg-blue-500 text-white">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Title
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Description
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Initiator
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Status
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-black">
+                            <% if (typeof allRequests !== 'undefined' && allRequests && allRequests.length > 0) { %>
+
+                                <% allRequests.forEach(function(request) { %>
+                                    <tr class="bg-white border-b hover:bg-gray-50">
+                                        <th scope="row" class="px-6 py-4 font-medium">
+                                            <%= request.title %>
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            <%= request.description %>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <%= request.user.name %>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <%= request.status %>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <a href="/signature-requests/<%= request.requestId %>" class="text-blue-500 hover:underline">View</a>
+                                        </td>
+                                    </tr>
+                                <% }); %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

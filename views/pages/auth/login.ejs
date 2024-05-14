@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+<body class="font-sans text-gray-300 antialiased">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-900">
+
+        <!-- Title -->
+        <h2 class="text-2xl font-semibold">Node.js Dropbox Embedded Signing</h2>
+
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <form method="POST" action="" class="space-y-3">        
+                <!-- Email Address -->
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" class="block mt-1 w-full focus:outline-none p-2 rounded bg-gray-900 border border-gray-600" type="email" name="email" required autofocus autocomplete="email" />
+                </div>
+        
+                <!-- Password -->
+                <div>
+                    <label for="password">Password</label>
+                    <input id="password" class="block mt-1 w-full focus:outline-none p-2 rounded bg-gray-900 border border-gray-600" type="password" name="password" required autofocus autocomplete="current-password" />
+                </div>
+
+                <!-- Errors -->
+                <% if (typeof errors !== 'undefined' && errors && errors.length > 0) { %>
+                    <div class="">
+                      <ul>
+                        <% errors.forEach(function(error) { %>
+                          <li class="text-sm text-red-500"><%= error %></li>
+                        <% }); %>
+                      </ul>
+                    </div>
+                  <% } %>
+        
+                <div class="flex items-center justify-end mt-4"> 
+                    <p>No account? <a href="/signup" class="underline">Sign up</a></p>       
+                    <button class="bg-white px-6 py-2 text-gray-900 rounded ml-3">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

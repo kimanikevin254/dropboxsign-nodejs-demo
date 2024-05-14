@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String             @id @default(uuid())
+  name              String
+  email             String             @unique
+  password          String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @default(now())
+  signatureRequests SignatureRequest[]
+}
+
+model SignatureRequest {
+  requestId   String      @id @default(uuid())
+  title       String
+  description String
+  documentUrl String
+  user        User        @relation(fields: [initiatorId], references: [id])
+  initiatorId String
+  status      String
+  referenceId String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @default(now())
+  signatories Signatory[]
+}
+
+model Signatory {
+  signatoryId        String           @id @default(uuid())
+  name               String
+  email              String
+  position           String
+  dsSignatureId      String
+  signatureRequest   SignatureRequest @relation(fields: [signatureRequestId], references: [requestId])
+  signatureRequestId String
+  status             String
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @default(now())
+}
