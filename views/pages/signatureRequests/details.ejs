@@ -92,4 +92,17 @@
         </div>
         <% } %>
     </div>
+
+    <script src="https://cdn.hellosign.com/public/js/embedded/v2.11.1/embedded.development.js"></script>
+    <script>
+        const client = new HelloSign();
+
+        function signDoc() {
+            client.open('<%- signatureRequest.signUrl %>', {
+                clientId: 'YOUR_CLIENT_ID_HERE',
+                skipDomainVerification: true,
+                testMode: true
+            });
+        }
+    </script>
 </body>
