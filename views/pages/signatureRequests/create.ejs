@@ -58,27 +58,27 @@
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Signature Request</button>
         </div>
     </form>
+
+    <script>
+        // JavaScript code for adding signatories dynamically
+        document.getElementById('addSignatory').addEventListener('click', function() {
+            var signatoriesContainer = document.getElementById('signatories');
+            var signatoryIndex = signatoriesContainer.childElementCount + 1;
+            var signatoryTemplate = `
+            <div class="mt-2">
+                <h3>Signatory ${signatoryIndex}</h3>
+    
+                <div class="space-y-3">
+                    <input class="block mt-1 w-full focus:outline-none p-2 rounded bg-gray-900 border border-gray-600" type="text" name="signatory_name[]" placeholder="Name" required />
+                    <input class="block mt-1 w-full focus:outline-none p-2 rounded bg-gray-900 border border-gray-600" type="email" name="signatory_email[]" placeholder="Email" required />
+                    <input class="block mt-1 w-full focus:outline-none p-2 rounded bg-gray-900 border border-gray-600" type="text" name="signatory_position[]" placeholder="Position" required />
+                </div>
+            </div>
+            `
+            var signatoryElement = document.createElement('div');
+            signatoryElement.innerHTML = signatoryTemplate;
+            signatoriesContainer.appendChild(signatoryElement);
+        });
+    </script>
 </body>
 </html>
-
-<script>
-    // JavaScript code for adding signatories dynamically
-    document.getElementById('addSignatory').addEventListener('click', function() {
-        var signatoriesContainer = document.getElementById('signatories');
-        var signatoryIndex = signatoriesContainer.childElementCount + 1;
-        var signatoryTemplate = `
-        <div class="mt-2">
-            <h3>Signatory ${signatoryIndex}</h3>
-
-            <div class="space-y-3">
-                <input class="block mt-1 w-full focus:outline-none p-2 rounded bg-gray-900 border border-gray-600" type="text" name="signatory_name[]" placeholder="Name" required />
-                <input class="block mt-1 w-full focus:outline-none p-2 rounded bg-gray-900 border border-gray-600" type="email" name="signatory_email[]" placeholder="Email" required />
-                <input class="block mt-1 w-full focus:outline-none p-2 rounded bg-gray-900 border border-gray-600" type="text" name="signatory_position[]" placeholder="Position" required />
-            </div>
-        </div>
-        `
-        var signatoryElement = document.createElement('div');
-        signatoryElement.innerHTML = signatoryTemplate;
-        signatoriesContainer.appendChild(signatoryElement);
-    });
-</script>
